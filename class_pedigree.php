@@ -1169,7 +1169,7 @@ class ReportPedigree extends TCPDF {
 				$dX = $this->xBrim + $this->xOffset;
 				$dY = $h - $this->yBrim - $this->FontSize / 2.5;
 				if ($h > $w) {
-					$orient='P'; //luk
+					$orient = 'P'; // wooc
 					$dX = $dX * 1.6;
 				} else {
 					$orient = 'L';
@@ -1183,16 +1183,16 @@ class ReportPedigree extends TCPDF {
 				if ($h > $w) {
 					$orient = 'P';
 				} else {
-					$orient='L';
+					$orient = 'L';
 					$dY = $dY * 2;
 				}
 			}
 			$this->pdf->setPageFormat(array($w, $h), $orient);
 			//actual date
 			$this->pdf->MultiCell ($this->xWidth, $this->FontSize / 2.5,
-				 FunctionsDate::timestampToGedcomDate(mktime(0, 0, 0, date("m"), date("d"), date("Y")))->Display(), 0, $dO, 0, 0, $dX, $dY, true, 0, true, false);
+				 FunctionsDate::timestampToGedcomDate(mktime(0, 0, 0, date('m'), date('d'), date('Y')))->Display(), 0, $dO, 0, 0, $dX, $dY, true, 0, true, false);
 			//title
-			$this->pdf->MultiCell($w, $this->FontSize * 2, "<h2>" . I18N::translate('%1$s: %2$d Generation Pedigree Chart', $this->underlinestar($this->allIndividuals[$this->ancestors[1]]->getFullName()), max($this->genShow, $this->descendantGenShow + 1)) . "</h2>", 0, 'C', 0, 0, 0, $this->yBrim, true, 0, true, false, $this->FontSize * 2);
+			$this->pdf->MultiCell($w, $this->FontSize * 2, "<h2>" . I18N::translate('%1$s: %2$d Generation Pedigree Chart', $this->underlinestar(strip_tags($this->allIndividuals[$this->ancestors[1]]->getFullName())), max($this->genShow, $this->descendantGenShow + 1)) . "</h2>", 0, 'C', 0, 0, 0, $this->yBrim, true, 0, true, false, $this->FontSize * 2);
 		} else {
 			$this->FontSize = 10;
 			$controller = new SimpleController();
