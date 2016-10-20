@@ -495,7 +495,7 @@ class ReportPedigree extends TCPDF {
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('webtrees');
-		$pdf->SetTitle('webtrees '.$this->underlinestar($this->allIndividuals[$this->ancestors[1]]->getFullName()));
+		$pdf->SetTitle('webtrees '.$this->underlinestar(strip_tags($this->allIndividuals[$this->ancestors[1]]->getFullName())));
 		//set margins
 		$pdf->SetMargins($this->xBrim, $this->yBrim, $this->xBrim);
 		// remove default header/footer
